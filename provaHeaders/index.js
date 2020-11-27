@@ -6,12 +6,30 @@ app.get ("/", (req, res) => {
     const nome = (req.query.nome)
     const cognome = (" " + req.query.cognome)
     const anni = (req.query.anni)
+
+    maggiorenne = () => {
+        if (anni<18){
+            const risposta="Risulta che tu sia minorenne"
+            return(risposta)
+        }
+        else{
+            const risposta="Risulta che tu sia maggiorenne"
+            return(risposta)
+        }
+      }
+
     if (nome===undefined || cognome===undefined || anni===undefined){
         res.send("Mancano dei parametri o sono presenti errori nella tua richiesta")
+        
     }
     else{
-        res.send("ciao " + nome + cognome + " tu hai " + anni + " anni" )
+        const risposta=maggiorenne()
+        const messaggio=("ciao " + nome + cognome + " tu hai " + anni + " anni"+ " <br />" + risposta )
+        res.send(messaggio)
+      
     }  
+
+    
 })
 
 app.get ("/language", (req, res) => {
