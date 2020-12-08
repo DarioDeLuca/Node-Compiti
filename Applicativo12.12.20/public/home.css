@@ -1,0 +1,62 @@
+body{
+  background-color: rgb(141, 9, 9)
+}
+
+#navbar{
+  color: yellow;
+  color:  rgb(141, 9, 9);
+  background-color: orange;
+  margin: 0px !important; 
+}
+
+#navbar_link{
+  color:  rgb(141, 9, 9);
+  background-color: orange;
+}
+
+#navbar_title{
+  color:  rgb(141, 9, 9);
+  background-color: orange;
+  font-size-adjust: 0.85;
+}
+
+#titolo{
+  color: orange;
+}
+
+#jumbo1{
+  background-color: rgb(141, 9, 9) !important;
+  margin: 0px; 
+}
+
+.card{
+  background-color: orange;
+  width:  500px;
+  margin: auto;
+}
+
+.bottone{
+  background-color: rgb(141, 9, 9);
+  color: orange;
+  border-color: black;
+  
+}
+.bottone:hover {
+  color: #fff;
+  background-color: #d31d1de0;
+  border-color: #d31d1de0;
+}
+
+.testiNav{
+  font-size-adjust: 0.53;
+}
+
+.logo{
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+
