@@ -5,30 +5,36 @@ const e = module.exports
 
 e.getComment = async(id,response) => {
  
-  let c = await fetch("https://jsonplaceholder.typicode.com/posts")
-  let dati = await fetch(`https://jsonplaceholder.typicode.com/post/${id}/comments`)
-  dati = await dati.json()
-  c = await c.json()
+  try {
+    let c = await fetch("https://jsonplaceholder.typicode.com/posts")
+    let dati = await fetch(`https://jsonplaceholder.typicode.com/post/${id}/comments`)
+    dati = await dati.json()
+    c = await c.json()
+  
+    let comment = await c.forEach( (e) => {
+      if (e.id==id){
+        response.write( `<h1>Ecco le risposte al post "${e.title}" pubblicato dall'utente ${e.userId}:</h1><br>`) 
+      }  
+    })
+  
+    let nomi = await dati.forEach( (e) => {
+      response.write( `<h3>"${e.email}" ha commentato: </h3> <p>${e.body}</p><br>`)   
+    })
+  
+    response.send(comment)
+    response.send(nomi)
 
-  let comment = await c.forEach( (e) => {
-    if (e.id==id){
-      response.write( `<h1>Ecco le risposte al post "${e.title}" pubblicato dall'utente ${e.userId}:</h1><br>`) 
-    }  
-  })
-
-  let nomi = await dati.forEach( (e) => {
-    response.write( `<h3>"${e.email}" ha commentato: </h3> <p>${e.body}</p><br>`)   
-  })
-  response.send(comment)
-  response.send(nomi)
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 
 
 
 e.listaPost = async(response) => {
- 
-  let c = 1
+  try {
+    let c = 1
   let x = 0
   let p = await fetch("https://jsonplaceholder.typicode.com/posts")
   p = await p.json()
@@ -55,8 +61,12 @@ e.listaPost = async(response) => {
 
   })
 
-
   response.send(post)
+
+  } catch (error) {
+    console.error(error);
+   
+  }
   
 }
 
