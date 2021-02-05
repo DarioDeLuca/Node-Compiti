@@ -7,9 +7,9 @@ app.use(express.json())
 const db = new sqlite3.Database(':memory:') 
 
 db.serialize(()=> {
-  db.run("CREATE TABLE accounts (username TEXT, pwd TEXT)");
+  db.run("CREATE TABLE user (username TEXT, password TEXT)");
 
-  var stmt = db.prepare("INSERT INTO accounts VALUES (?,?)")
+  var stmt = db.prepare("INSERT INTO user VALUES (?,?)")
   for (var i = 0; i < 10; i++) {
       stmt.run("utente" + i, "password"+i)
   }
@@ -17,9 +17,9 @@ db.serialize(()=> {
 })
 
 app.post("/login",(req,res)=>{
-    const { user,password } = req.body
+    const { user, pwd } = req.body
 
-    db.get("SELECT * FROM accounts WHERE username = ? AND pwd = ?",user,password,(err,row)=>{
+    db.get("SELECT * FROM user WHERE username = ? AND password = ?",user,pwd,(err,row)=>{
         if (err) console.log(err)
         else{
             if (row) res.json({status : 200, ok: "true"})
