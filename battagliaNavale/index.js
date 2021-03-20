@@ -194,14 +194,12 @@ app.get("/fire", ({ query: { x, y, team, password } }, res) => {
       cell.hit = true
       const firedShip = cell.ship
       
-      if (firedShip.curHp === 1 || firedShip.maxHp===1) {
+      if (firedShip.curHp === 1) {
         // NAVE AFFONDATA
-
-        // Update ship data
+        
         firedShip.alive = false
         firedShip.curHp = 0
         firedShip.killer = team
-        // Update team data
         teamData.killedShips.push(firedShip)
         teamData.score += 3
 
@@ -212,8 +210,6 @@ app.get("/fire", ({ query: { x, y, team, password } }, res) => {
         // NAVE COLPITA
         firedShip.killer = team
         firedShip.curHp -= 1
-       
-        // Update team data
         teamData.score += 1
 
         //console.log(firedShip.name)
