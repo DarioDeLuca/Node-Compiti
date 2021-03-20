@@ -3,7 +3,8 @@ const express = require("express")
 const app = new express()
 const PORT = 8080
 
-//TEAM DI PROVA
+///////////////////////////TEAM DI PROVA
+
 const teams = {
   pippo: {
     team: "pippo",
@@ -14,13 +15,15 @@ const teams = {
     lastFiredBullet: new Date().getTime()
   }
 }
+////////////////////////////
 
 const field = []
 const ships = []
 
 const W =  6
-const H =  6
+const H = process.argv[3] || 6
 const S = process.argv[4] || 10
+
 
 for (let y = 0; y < H; y++) {
   const row = []
@@ -42,7 +45,7 @@ for (let i = 0; i < S; i++) {
   const vertical = faker.random.boolean()
   //console.log({ vertical, maxHp})
 
-  const ship = {
+  const ship = {                //NAVI
     id,
     name: faker.name.firstName(),
     x: faker.random.number({ min: 0, max: vertical ? W - 1 : W - maxHp }),
@@ -216,7 +219,7 @@ app.get("/fire", ({ query: { x, y, team, password } }, res) => {
         //console.log(firedShip.curHp)
         //console.log(firedShip.maxHp)
 
-        return res.status(200).send({ score: teamData.score, info: { x, y, team }, msg: `Hai colpito la U.S.S ${firedShip.name} ma ancora funzionante, attenzione!` })
+        return res.status(200).send({ score: teamData.score, info: { x, y, team }, msg: `Hai colpito la U.S.S ${firedShip.name} tutavia galleggia ancora, fai attenzione!` })
       
 
        
